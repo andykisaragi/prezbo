@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Cloud9, NodeJS & Heroku: websockets for all</title>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
+
+<script src="log.js" ></script>
+
+</head>
+
+<body onload="init()">
+<p>
+<label style='width:200px;float:left'>Status: <span id="status">Idle</span></label>
+</p>
+<p>SessionId: <span id="sessionId">-</span></p>
+<p>Transport: <span id="transport">-</span></p>
+
+<p>
+<label>Message: <input id="text" type="text" size="80" value=""/></label>
+<input type=button value="Echo" onclick="send()">
+</p>
+
+<p>
+<input type=button value="Yes" onclick="vote(0)" />
+<input type=button value="No" onclick="vote(1)" />
+</p>
+
+<div>Yes: <span id="voteYes">0</span></div>
+<div>No: <span id="voteNo">0</span></div>
+
+<div id="content"></div>
+
+<canvas id='canvas' width='350px' height='350px' style='border:1px solid #000;'></canvas>
+
+<pre id="log">Log:</pre>
+
+
+<div id="scripts"><script src="vote.js"></script></div>
+
+</body>
+</html>
