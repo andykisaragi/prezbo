@@ -14,11 +14,10 @@ function vote_onmessage(json){
         updateVotes(json.data);            
     }
 
-
 }
 
-
 // send message from text box thing
+// (not actually part of vote module)
 function send() {
     if (socket && socket.socket.connected) {
         socket.send(JSON.stringify({ type:'message', data:document.getElementById('text').value}));
@@ -33,13 +32,11 @@ var can = document.getElementById("canvas");
 var ctx = can.getContext("2d");
 var colours = new Array('#FF0000','0000FF','#00FF00','FF00FF','#FFFF00','00FFFF');
 
-function updateVotes(data){
+function updateVotes(votes){
     
     ctx.fillStyle = "#eee";
     ctx.fillRect(0,0,350,350);
-    
-    var votes = data;
-    
+
     var barWidth = 350 / votes.length;
     
     var totalVotes = 0;
@@ -54,7 +51,7 @@ function updateVotes(data){
         document.getElementById('vote' + votes[i].name).innerHTML = votes[i].numVotes + ' (' + (pct * 100) + '%)';
     
         ctx.fillStyle = colours[i];
-        ctx.fillRect(i*barWidth,(350 - barHeight),barWidth,barHeight);
+        ctx.fillRect((i*barWidth) + 10,(350 - barHeight),barWidth - 20,barHeight);
     
     }
     

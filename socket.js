@@ -33,6 +33,8 @@ function connect() {
 
 // TODO: generic hook-calling function
 
+//function prez_hook(hook,vars)
+
 function module_onconnect(){
     for (var i=0; i < modules.length; i++) {
         var function_name = modules[i] + "_onconnect";
@@ -47,7 +49,6 @@ function module_onmessage(json){
         console.log(function_name);
         window[function_name](json);
     }
-    
 }
 
 function update() {
