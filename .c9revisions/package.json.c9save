@@ -1,0 +1,1 @@
+{"ts":1365588177338,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"{\r\n  \"name\": \"dev002\",                                              \r\n  \"version\": \"0.0.1\",\r\n  \"dependencies\":\r\n  {\r\n    \"socket.io\": \">= 0.8.7\"\r\n  }\r\n}"]],"start1":0,"start2":0,"length1":0,"length2":152}]],"length":152}
