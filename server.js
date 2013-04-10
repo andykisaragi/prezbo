@@ -79,9 +79,6 @@ io.sockets.on('connection', function (socket) {
             data = JSON.stringify({ type:'votes', data: votes })
         }        
         for (var i=0; i < clients.length; i++) {
-
-
-   
             
             clients[i].send(data);
         }
