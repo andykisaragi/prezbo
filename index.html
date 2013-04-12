@@ -6,11 +6,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" ></script>
 
 <script src="log.js" ></script>
-<script src="socket.js"></script>
+<script src="module.js"></script>
 
 </head>
 
-<body onload="init()">
+<body>
 <p>
 <label style='width:200px;float:left'>Status: <span id="status">Idle</span></label>
 </p>
@@ -22,29 +22,15 @@
 <input type=button value="Echo" onclick="send()">
 </p>
 
-<div id="content">
-
-<p>
-<input type=button value="Yes" onclick="vote(0)" />
-<input type=button value="No" onclick="vote(1)" />
-</p>
-
-<div>Yes: <span id="voteYes">0</span></div>
-<div>No: <span id="voteNo">0</span></div>
-
-<canvas id='canvas' width='350px' height='350px' style='border:1px solid #000;'></canvas>
-  
-</div>
-
-
+<div id="content"></div>
 
 <pre id="log">Log:</pre>
 
-
 <div id="scripts">
-<script src="vote.js">
-</script>
+
+<script src="socket.js">
     
+</script>
 </div>
 
 </body>
