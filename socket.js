@@ -1,11 +1,13 @@
+
 var socket = null;
 
 // faking this for now, should be dynamic obvz
-var modules = new Array('vote');
+var modules = [ ];
 
-function init(){
-    connect();    
-}
+connect();  
+//loadModules();
+//var Vote = new Vote();
+//modules.push(Vote);
 
 function connect() {
     log('Connecting to local server...');
@@ -17,6 +19,7 @@ function connect() {
         });
         socket.on('message', function (data) {
             
+            console.log("jsondata : " + data);
             try {
                 var json = JSON.parse(data);
             } catch (e) {
@@ -24,7 +27,31 @@ function connect() {
                 return;
             }
 
-            module_onmessage(json);
+
+            if (json.type == 'content'){
+                
+                console.log(json);
+                
+                if(json.data.content && json.data.id){
+                    
+                    console.log(json.data.content);
+                        
+                    document.getElementById(json.data.id).innerHTML = json.data.content;
+                
+                }
+            
+            }
+            
+            if(json.type == 'js'){
+            
+                if(json.data.object && json.data.name){ 
+                    window[json.data.name] = json.data.object;
+                }
+                
+                
+            }
+
+            //module_onmessage(json);
             
         });
     }
@@ -37,17 +64,29 @@ function connect() {
 
 function module_onconnect(){
     for (var i=0; i < modules.length; i++) {
-        var function_name = modules[i] + "_onconnect";
+        /*var function_name = "onconnect";
         console.log(function_name);
-        window[function_name]();
+        window[function_name]();*/
+        
     }
 }
 
 function module_onmessage(json){
     for (var i=0; i < modules.length; i++) {
-        var function_name = modules[i] + "_onmessage";
+        /*var function_name = modules[i] + "_onmessage";
         console.log(function_name);
-        window[function_name](json);
+        window[function_name](json);*/
+        modules[i].onMessage(json);
+    }
+}
+
+// send message from text box thing
+function send() {
+    if (socket && socket.socket.connected) {
+        socket.send(JSON.stringify({ type:'message', data:document.getElementById('text').value}));
+        log('>' + document.getElementById('text').value);
+    } else {
+        log('Not connected.');
     }
 }
 
